@@ -1,0 +1,44 @@
+{
+  "name": "unilib",
+  "version": "0.0.0",
+  "description": "The Uni Library for JavaScript",
+  "keywords": [
+    "unilib",
+    "URegistry",
+    "UBus",
+    "UDispatcher",
+    "ULogger"
+  ],
+  "repository": "github:axiomlogic/unilib",
+  "homepage": "https://github.com/axiomlogic/unilib",
+  "bugs": {
+    "url": "https://github.com/axiomlogic/unilib/issues"
+  },
+  "author": "Nestor Toro <nestor@axiomlogic.com>",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "rm -rf lib/; tsc",
+    "test": "rm -rf coverage/; jest",
+    "lint": "prettier -l src/**/*.*; eslint src/**/*.*"
+  },
+  "devDependencies": {
+    "@types/jest": "24.0.13",
+    "@types/lodash.defer": "4.1.6",
+    "@typescript-eslint/eslint-plugin": "1.9.0",
+    "@typescript-eslint/parser": "1.9.0",
+    "eslint": "5.16.0",
+    "eslint-config-prettier": "4.3.0",
+    "jest": "24.8.0",
+    "lodash.defer": "4.1.0",
+    "prettier": "1.17.1",
+    "ts-jest": "24.0.2",
+    "typescript": "3.4.5"
+  },
+  "dependencies": {
+    "ulid": "2.3.0"
+  }
+}
