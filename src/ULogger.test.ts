@@ -110,5 +110,38 @@ describe(
         }, 10);
       });
     });
+
+    describe('toLevel (static)', (): void => {
+      it('returns appropriate numeric level, given a string label', (): void => {
+        expect(ULogger.toLevel('SILENT')).toEqual(ULogger.LEVEL_SILENT);
+        expect(ULogger.toLevel('silent')).toEqual(ULogger.LEVEL_SILENT);
+        expect(ULogger.toLevel(ULogger.LEVEL_SILENT_LABEL)).toEqual(ULogger.LEVEL_SILENT);
+
+        expect(ULogger.toLevel('TRACE')).toEqual(ULogger.LEVEL_TRACE);
+        expect(ULogger.toLevel('trace')).toEqual(ULogger.LEVEL_TRACE);
+        expect(ULogger.toLevel(ULogger.LEVEL_TRACE_LABEL)).toEqual(ULogger.LEVEL_TRACE);
+
+        expect(ULogger.toLevel('DEBUG')).toEqual(ULogger.LEVEL_DEBUG);
+        expect(ULogger.toLevel('debug')).toEqual(ULogger.LEVEL_DEBUG);
+        expect(ULogger.toLevel(ULogger.LEVEL_DEBUG_LABEL)).toEqual(ULogger.LEVEL_DEBUG);
+
+        expect(ULogger.toLevel('INFO')).toEqual(ULogger.LEVEL_INFO);
+        expect(ULogger.toLevel('info')).toEqual(ULogger.LEVEL_INFO);
+        expect(ULogger.toLevel(ULogger.LEVEL_INFO_LABEL)).toEqual(ULogger.LEVEL_INFO);
+
+        expect(ULogger.toLevel('WARN')).toEqual(ULogger.LEVEL_WARN);
+        expect(ULogger.toLevel('warn')).toEqual(ULogger.LEVEL_WARN);
+        expect(ULogger.toLevel(ULogger.LEVEL_WARN_LABEL)).toEqual(ULogger.LEVEL_WARN);
+
+        expect(ULogger.toLevel('ERROR')).toEqual(ULogger.LEVEL_ERROR);
+        expect(ULogger.toLevel('error')).toEqual(ULogger.LEVEL_ERROR);
+        expect(ULogger.toLevel(ULogger.LEVEL_ERROR_LABEL)).toEqual(ULogger.LEVEL_ERROR);
+
+        expect(ULogger.toLevel((undefined as unknown) as string)).toEqual(ULogger.LEVEL_SILENT);
+        expect(ULogger.toLevel((null as unknown) as string)).toEqual(ULogger.LEVEL_SILENT);
+        expect(ULogger.toLevel((123 as unknown) as string)).toEqual(ULogger.LEVEL_SILENT);
+        expect(ULogger.toLevel(({} as unknown) as string)).toEqual(ULogger.LEVEL_SILENT);
+      });
+    });
   }
 );
