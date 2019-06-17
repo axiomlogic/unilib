@@ -2,21 +2,18 @@
 
 import { ulid } from 'ulid';
 
-export interface UErrorInterface extends Error {
-  readonly id: string;
-  readonly timestamp: number;
-  readonly context: { [key: string]: NonNullable<any> };
+export namespace UError {
+  export interface Context {
+    [key: string]: NonNullable<any>;
+  }
 }
 
-export class UError extends Error implements UErrorInterface {
+export class UError extends Error {
   public readonly id: string = ulid();
   public readonly timestamp: number = Date.now();
-  public readonly context: { [key: string]: NonNullable<any> } = {};
+  public readonly context: UError.Context = {};
 
-  public constructor(
-    message?: string,
-    context?: { [key: string]: NonNullable<any> }
-  ) {
+  public constructor(message?: string, context?: UError.Context) {
     super(typeof message === 'string' ? message : '');
     if (typeof context === 'object') this.context = context;
   }

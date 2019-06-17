@@ -4,35 +4,18 @@ import UError from './UError';
 
 const WILDCARD = '*';
 
-export interface UBusInterface {
-  subscribe(
-    topic: string,
-    subscriber: (
-      topic: string,
-      message?: NonNullable<any>
-    ) => void | Promise<void>
-  ): () => void;
-
-  publish(topic: string, message?: NonNullable<any>): void;
+export namespace UBus {
+  export interface Subscriber {
+    (topic: string, message?: NonNullable<any>): void | Promise<void>;
+  }
 }
 
-type Subscriber = (
-  topic: string,
-  message?: NonNullable<any>
-) => void | Promise<void>;
-
-export class UBus implements UBusInterface {
+export class UBus {
   private readonly __: {
-    [topic: string]: Subscriber[];
+    [topic: string]: UBus.Subscriber[];
   } = {};
 
-  public subscribe(
-    topic: string,
-    subscriber: (
-      topic: string,
-      message?: NonNullable<any>
-    ) => void | Promise<void>
-  ): () => void {
+  public subscribe(topic: string, subscriber: UBus.Subscriber): () => void {
     if (typeof topic !== 'string' || (topic = topic.trim()) === '') {
       throw new UError(`${this.constructor.name}.subscribe/INVALID_TOPIC`, {
         topic
@@ -50,11 +33,13 @@ export class UBus implements UBusInterface {
 
     const unsubscribe = (): void => {
       this.__[topic] = this.__[topic].filter(
-        (s: Subscriber): boolean => s !== subscriber
+        (s: UBus.Subscriber): boolean => s !== subscriber
       );
     };
 
-    if (!this.__[topic].some((s: Subscriber): boolean => s === subscriber)) {
+    if (
+      !this.__[topic].some((s: UBus.Subscriber): boolean => s === subscriber)
+    ) {
       this.__[topic] = [...this.__[topic], subscriber];
     }
 
@@ -72,7 +57,7 @@ export class UBus implements UBusInterface {
       });
     }
 
-    let subscribers: Subscriber[] = [];
+    let subscribers: UBus.Subscriber[] = [];
 
     for (const _topic of Object.keys(this.__)) {
       if (
@@ -86,7 +71,7 @@ export class UBus implements UBusInterface {
     type Wrapper = () => Promise<void>;
 
     const wrappers = subscribers.map(
-      (subscriber: Subscriber): Wrapper => async (): Promise<void> => {
+      (subscriber: UBus.Subscriber): Wrapper => async (): Promise<void> => {
         try {
           await subscriber(
             topic,

@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-type Appender = (
-  level: string,
-  record: NonNullable<any>
-) => void | Promise<void>;
-
-export interface ULoggerInterface {
-  log(level: number, record: NonNullable<any>): void;
+export namespace ULogger {
+  export interface Appender {
+    (level: string, record: NonNullable<any>): void | Promise<void>;
+  }
 }
 
 const LEVEL_SILENT = -1;
@@ -30,6 +27,15 @@ const levels = [
   LEVEL_ERROR_LABEL
 ];
 
+function toLevel(level: number | string): number {
+  if (typeof level === 'number' && levels[level]) return level;
+  if (typeof level === 'string') {
+    const i = levels.indexOf(level.trim().toUpperCase());
+    return i >= 0 ? i : LEVEL_SILENT;
+  }
+  return LEVEL_SILENT;
+}
+
 export class ULogger {
   public static readonly LEVEL_SILENT = LEVEL_SILENT;
   public static readonly LEVEL_SILENT_LABEL = LEVEL_SILENT_LABEL;
@@ -45,18 +51,16 @@ export class ULogger {
   public static readonly LEVEL_ERROR_LABEL = LEVEL_ERROR_LABEL;
 
   private _level = LEVEL_SILENT;
-  private _appender: Appender = (): void => {};
+  private _appender: ULogger.Appender = (): void => {};
 
-  public constructor(
-    level: number,
-    appender: (level: string, record: NonNullable<any>) => void | Promise<void>
-  ) {
+  public constructor(level: number | string, appender: ULogger.Appender) {
     this.setLevel(level);
     if (typeof appender === 'function') this._appender = appender;
   }
 
-  public setLevel(level: number): void {
-    if (typeof level === 'number' && levels[level]) this._level = level;
+  public setLevel(level: number | string): void {
+    this._level = toLevel(level);
+    return;
   }
 
   public log(level: number, record: NonNullable<any>): void {
@@ -78,12 +82,6 @@ export class ULogger {
     };
 
     wrapper(level, record);
-  }
-
-  public static toLevel(label: string): number {
-    if (typeof label !== 'string') return LEVEL_SILENT;
-    const i = levels.indexOf(label.trim().toUpperCase());
-    return i >= 0 ? i : LEVEL_SILENT;
   }
 }
 

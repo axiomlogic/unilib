@@ -7,15 +7,21 @@
     "URegistry",
     "UBus",
     "UDispatcher",
-    "ULogger"
+    "ULogger",
+    "UError"
   ],
-  "repository": "github:axiomlogic/unilib",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/axiomlogic/unilib.git"
+  },
   "homepage": "https://github.com/axiomlogic/unilib",
   "bugs": {
     "url": "https://github.com/axiomlogic/unilib/issues"
   },
   "author": "Nestor Toro <nestor@axiomlogic.com>",
+  "contributors": [],
   "license": "MIT",
+  "engines": {},
   "main": "lib/index.js",
   "files": [
     "lib"
@@ -26,17 +32,17 @@
     "lint": "prettier -l src/**/*.*; eslint src/**/*.*"
   },
   "devDependencies": {
-    "@types/jest": "24.0.13",
+    "@types/jest": "24.0.15",
     "@types/lodash.defer": "4.1.6",
-    "@typescript-eslint/eslint-plugin": "1.9.0",
-    "@typescript-eslint/parser": "1.9.0",
+    "@typescript-eslint/eslint-plugin": "1.10.2",
+    "@typescript-eslint/parser": "1.10.2",
     "eslint": "5.16.0",
-    "eslint-config-prettier": "4.3.0",
+    "eslint-config-prettier": "5.0.0",
     "jest": "24.8.0",
     "lodash.defer": "4.1.0",
-    "prettier": "1.17.1",
+    "prettier": "1.18.2",
     "ts-jest": "24.0.2",
-    "typescript": "3.4.5"
+    "typescript": "3.5.2"
   },
   "dependencies": {
     "ulid": "2.3.0"

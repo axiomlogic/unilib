@@ -5,8 +5,6 @@ import URegistry from './URegistry';
 
 class TestService {}
 
-type Initializer = (registry?: URegistry) => NonNullable<any>;
-
 describe(
   URegistry.name,
   (): void => {
@@ -149,7 +147,7 @@ describe(
 
       it('throws error, given invalid value initializer', (): void => {
         try {
-          registry.register('someService', ('foobar' as unknown) as Initializer);
+          registry.register('someService', ('foobar' as unknown) as URegistry.Initializer);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -157,7 +155,7 @@ describe(
         }
 
         try {
-          registry.register('someService', (undefined as unknown) as Initializer);
+          registry.register('someService', (undefined as unknown) as URegistry.Initializer);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -165,7 +163,7 @@ describe(
         }
 
         try {
-          registry.register('someService', (null as unknown) as Initializer);
+          registry.register('someService', (null as unknown) as URegistry.Initializer);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);

@@ -2,18 +2,17 @@
 
 import UError from './UError';
 
-export interface URegistryInterface {
-  isRegistered(key: string): boolean;
-  get(key: string, defaultValue?: NonNullable<any>): NonNullable<any>;
+export namespace URegistry {
+  export interface Initializer {
+    (registry?: URegistry): NonNullable<any>;
+  }
 }
 
-type Initializer = (registry?: URegistry) => NonNullable<any>;
-
-export class URegistry implements URegistryInterface {
+export class URegistry {
   private readonly __: {
     [key: string]: {
       value?: NonNullable<any>;
-      initializer?: Initializer;
+      initializer?: URegistry.Initializer;
     };
   } = {};
 
@@ -29,10 +28,7 @@ export class URegistry implements URegistryInterface {
     this.__[key] = { value };
   }
 
-  public register(
-    key: string,
-    initializer: (registry?: URegistry) => NonNullable<any>
-  ): void {
+  public register(key: string, initializer: URegistry.Initializer): void {
     if (typeof key !== 'string' || key.trim() === '') {
       throw new UError(`${this.constructor.name}.register/INVALID_KEY`, {
         key
@@ -70,7 +66,7 @@ export class URegistry implements URegistryInterface {
       }
 
       if (this.__[key].initializer) {
-        const initializer = this.__[key].initializer as Initializer;
+        const initializer = this.__[key].initializer as URegistry.Initializer;
 
         const value = initializer(this);
 

@@ -4,8 +4,6 @@ import defer from 'lodash.defer';
 import UBus from './UBus';
 import UError from './UError';
 
-type Subscriber = (topic: string, message?: NonNullable<any>) => void | Promise<void>;
-
 describe(
   UBus.name,
   (): void => {

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import UError from './UError';
 import UDispatcher from './UDispatcher';
+import UError from './UError';
 
 const idle = async (ms: number): Promise<void> => {
   return new Promise(
@@ -13,8 +13,6 @@ const idle = async (ms: number): Promise<void> => {
     }
   );
 };
-
-type Handler = (...parameters: NonNullable<any>[]) => any | Promise<any>;
 
 describe(
   UDispatcher.name,
@@ -70,7 +68,7 @@ describe(
 
       it('throws error, given invalid handler', (): void => {
         try {
-          dispatcher.register('foobar', ('' as unknown) as Handler);
+          dispatcher.register('foobar', ('' as unknown) as UDispatcher.Handler);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -78,7 +76,7 @@ describe(
         }
 
         try {
-          dispatcher.register('foobar', ({} as unknown) as Handler);
+          dispatcher.register('foobar', ({} as unknown) as UDispatcher.Handler);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -86,7 +84,7 @@ describe(
         }
 
         try {
-          dispatcher.register('foobar', (undefined as unknown) as Handler);
+          dispatcher.register('foobar', (undefined as unknown) as UDispatcher.Handler);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -94,7 +92,7 @@ describe(
         }
 
         try {
-          dispatcher.register('foobar', (null as unknown) as Handler);
+          dispatcher.register('foobar', (null as unknown) as UDispatcher.Handler);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);

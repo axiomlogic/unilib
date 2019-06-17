@@ -2,21 +2,18 @@
 
 import UError from './UError';
 
-export interface UDispatcherInterface {
-  dispatch(name: string, ...parameters: NonNullable<any>[]): Promise<any>;
+export namespace UDispatcher {
+  export interface Handler {
+    (...parameters: NonNullable<any>[]): any | Promise<any>;
+  }
 }
 
-type Handler = (...parameters: NonNullable<any>[]) => any | Promise<any>;
-
-export class UDispatcher implements UDispatcherInterface {
+export class UDispatcher {
   private readonly __: {
-    [topic: string]: Handler;
+    [topic: string]: UDispatcher.Handler;
   } = {};
 
-  public register(
-    name: string,
-    handler: (...parameters: NonNullable<any>[]) => any | Promise<any>
-  ): void {
+  public register(name: string, handler: UDispatcher.Handler): void {
     if (typeof name !== 'string' || (name = name.trim()) === '') {
       throw new UError(
         `${this.constructor.name}.register/INVALID_HANDLER_NAME`,
