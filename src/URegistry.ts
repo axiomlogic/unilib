@@ -18,11 +18,15 @@ export class URegistry {
 
   public set(key: string, value: NonNullable<any>): void {
     if (typeof key !== 'string' || key.trim() === '') {
-      throw new UError(`${this.constructor.name}.set/INVALID_KEY`, { key });
+      throw new UError(`${this.constructor.name}.set/INVALID_KEY`, {
+        context: { key }
+      });
     }
 
     if (value === undefined || value === null) {
-      throw new UError(`${this.constructor.name}.set/INVALID_VALUE`, { value });
+      throw new UError(`${this.constructor.name}.set/INVALID_VALUE`, {
+        context: { value }
+      });
     }
 
     this.__[key] = { value };
@@ -31,14 +35,14 @@ export class URegistry {
   public register(key: string, initializer: URegistry.Initializer): void {
     if (typeof key !== 'string' || key.trim() === '') {
       throw new UError(`${this.constructor.name}.register/INVALID_KEY`, {
-        key
+        context: { key }
       });
     }
 
     if (typeof initializer !== 'function') {
       throw new UError(
         `${this.constructor.name}.register/INVALID_VALUE_INITIALIZER`,
-        { initializer }
+        { context: { initializer } }
       );
     }
 
@@ -52,7 +56,9 @@ export class URegistry {
   public get(key: string, defaultValue?: NonNullable<any>): NonNullable<any> {
     try {
       if (typeof key !== 'string' || key.trim() === '') {
-        throw new UError(`${this.constructor.name}.get/INVALID_KEY`, { key });
+        throw new UError(`${this.constructor.name}.get/INVALID_KEY`, {
+          context: { key }
+        });
       }
 
       if (!this.isRegistered(key)) {
@@ -61,7 +67,7 @@ export class URegistry {
         }
 
         throw new UError(`${this.constructor.name}.get/UNREGISTERED_KEY`, {
-          key
+          context: { key }
         });
       }
 

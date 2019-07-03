@@ -18,14 +18,14 @@ export class UBus {
   public subscribe(topic: string, subscriber: UBus.Subscriber): () => void {
     if (typeof topic !== 'string' || (topic = topic.trim()) === '') {
       throw new UError(`${this.constructor.name}.subscribe/INVALID_TOPIC`, {
-        topic
+        context: { topic }
       });
     }
 
     if (typeof subscriber !== 'function') {
       throw new UError(
         `${this.constructor.name}.subscribe/INVALID_SUBSCRIBER`,
-        { subscriber }
+        { context: { subscriber } }
       );
     }
 
@@ -53,7 +53,7 @@ export class UBus {
       topic.endsWith(WILDCARD)
     ) {
       throw new UError(`${this.constructor.name}.publish/INVALID_TOPIC`, {
-        topic
+        context: { topic }
       });
     }
 

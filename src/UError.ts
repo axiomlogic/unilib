@@ -1,21 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { ulid } from 'ulid';
-
 export namespace UError {
-  export interface Context {
+  export interface Properties {
     [key: string]: NonNullable<any>;
   }
 }
 
 export class UError extends Error {
-  public readonly id: string = ulid();
-  public readonly timestamp: number = Date.now();
-  public readonly context: UError.Context = {};
+  [key: string]: NonNullable<any>;
 
-  public constructor(message?: string, context?: UError.Context) {
+  public constructor(message?: string, properties?: UError.Properties) {
     super(typeof message === 'string' ? message : '');
-    if (typeof context === 'object') this.context = context;
+
+    if (typeof properties === 'object') {
+      for (const key in properties) {
+        if (properties[key] === undefined || properties[key] === null) continue;
+        this[key] = properties[key];
+      }
+    }
   }
 }
 

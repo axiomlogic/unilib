@@ -4,26 +4,23 @@ import UDispatcher from './UDispatcher';
 import UError from './UError';
 
 const idle = async (ms: number): Promise<void> => {
-  return new Promise(
-    (resolve): void => {
-      const t = setTimeout((): void => {
-        clearTimeout(t);
-        resolve();
-      }, ms);
-    }
-  );
+  return new Promise((resolve): void => {
+    const t = setTimeout((): void => {
+      clearTimeout(t);
+      resolve();
+    }, ms);
+  });
 };
 
 describe(
   UDispatcher.name,
+
   (): void => {
     let dispatcher: UDispatcher;
 
-    beforeEach(
-      (): void => {
-        dispatcher = new UDispatcher();
-      }
-    );
+    beforeEach((): void => {
+      dispatcher = new UDispatcher();
+    });
 
     describe('register', (): void => {
       it('registers handler, given valid name and handler', (): void => {

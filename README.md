@@ -7,7 +7,7 @@ The initial version of UniLib includes:
 | Class       | Description                                                                                                    |
 | ----------- | -------------------------------------------------------------------------------------------------------------- |
 | URegistry   | A generic key-value registry with lazy initialization and IoC (dependency injection) capabilities              |
-| uglobal     | A global instance of URegistry which can be favored over adding properties to the global object (e.g., window) |
+| registry    | A global instance of URegistry which can be favored over adding properties to the global object (e.g., window) |
 | UBus        | An in-memory message bus, with support for wildcard topics                                                     |
 | UDisptacher | A generic dispatcher, which dispatches to handler functions by name                                            |
 | ULogger     | A generic logger whose appender implementation can be specified at instantiation                               |
@@ -16,3 +16,4 @@ The initial version of UniLib includes:
 Notes:
 
 - This library is written in TypeScript and compiled to ES6-compatible JavaScript.
+- While this library has 100% unit test coverage and is being used in Production at a few companies, at this time, we cannot guarantee long-term support

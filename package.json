@@ -24,27 +24,28 @@
   "engines": {},
   "main": "lib/index.js",
   "files": [
-    "lib"
+    "lib",
+    "index.d.ts",
+    "index.js"
   ],
   "scripts": {
-    "build": "rm -rf lib/; tsc",
-    "test": "rm -rf coverage/; jest",
-    "lint": "prettier -l src/**/*.*; eslint src/**/*.*"
+    "build": "rm -rf lib/ index.* && tsc && ./build-index",
+    "test": "rm -rf coverage/ && jest",
+    "lint": "prettier -l 'src/**/*.ts' && eslint 'src/**/*.ts'"
   },
   "devDependencies": {
     "@types/jest": "24.0.15",
     "@types/lodash.defer": "4.1.6",
-    "@typescript-eslint/eslint-plugin": "1.10.2",
-    "@typescript-eslint/parser": "1.10.2",
+    "@types/node": "12.0.10",
+    "@typescript-eslint/eslint-plugin": "1.11.0",
+    "@typescript-eslint/parser": "1.11.0",
     "eslint": "5.16.0",
-    "eslint-config-prettier": "5.0.0",
+    "eslint-config-prettier": "6.0.0",
     "jest": "24.8.0",
     "lodash.defer": "4.1.0",
     "prettier": "1.18.2",
     "ts-jest": "24.0.2",
     "typescript": "3.5.2"
   },
-  "dependencies": {
-    "ulid": "2.3.0"
-  }
+  "dependencies": {}
 }

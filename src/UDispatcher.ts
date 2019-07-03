@@ -17,13 +17,13 @@ export class UDispatcher {
     if (typeof name !== 'string' || (name = name.trim()) === '') {
       throw new UError(
         `${this.constructor.name}.register/INVALID_HANDLER_NAME`,
-        { name }
+        { context: { name } }
       );
     }
 
     if (typeof handler !== 'function') {
       throw new UError(`${this.constructor.name}.register/INVALID_HANDLER`, {
-        handler
+        context: { handler }
       });
     }
 
@@ -41,14 +41,14 @@ export class UDispatcher {
     if (typeof name !== 'string' || (name = name.trim()) === '') {
       throw new UError(
         `${this.constructor.name}.dispatch/INVALID_HANDLER_NAME`,
-        { name }
+        { context: { name } }
       );
     }
 
     if (!this.isRegistered(name)) {
       throw new UError(
         `${this.constructor.name}.dispatch/UNREGISTERED_HANDLER_NAME`,
-        { name }
+        { context: { name } }
       );
     }
 
