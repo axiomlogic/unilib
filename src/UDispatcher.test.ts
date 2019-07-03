@@ -35,7 +35,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toMatch(new RegExp(`^${UDispatcher.name}.register/INVALID_HANDLER_NAME`));
+          expect(error.message).toEqual(`${UDispatcher.name}.register/INVALID_HANDLER_NAME`);
         }
 
         try {
@@ -43,7 +43,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toMatch(new RegExp(`^${UDispatcher.name}.register/INVALID_HANDLER_NAME`));
+          expect(error.message).toEqual(`${UDispatcher.name}.register/INVALID_HANDLER_NAME`);
         }
 
         try {
@@ -51,7 +51,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toMatch(new RegExp(`^${UDispatcher.name}.register/INVALID_HANDLER_NAME`));
+          expect(error.message).toEqual(`${UDispatcher.name}.register/INVALID_HANDLER_NAME`);
         }
 
         try {
@@ -59,7 +59,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toMatch(new RegExp(`^${UDispatcher.name}.register/INVALID_HANDLER_NAME`));
+          expect(error.message).toEqual(`${UDispatcher.name}.register/INVALID_HANDLER_NAME`);
         }
       });
 
@@ -69,7 +69,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toMatch(new RegExp(`^${UDispatcher.name}.register/INVALID_HANDLER`));
+          expect(error.message).toEqual(`${UDispatcher.name}.register/INVALID_HANDLER`);
         }
 
         try {
@@ -77,7 +77,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toMatch(new RegExp(`^${UDispatcher.name}.register/INVALID_HANDLER`));
+          expect(error.message).toEqual(`${UDispatcher.name}.register/INVALID_HANDLER`);
         }
 
         try {
@@ -85,7 +85,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toMatch(new RegExp(`^${UDispatcher.name}.register/INVALID_HANDLER`));
+          expect(error.message).toEqual(`${UDispatcher.name}.register/INVALID_HANDLER`);
         }
 
         try {
@@ -93,7 +93,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toMatch(new RegExp(`^${UDispatcher.name}.register/INVALID_HANDLER`));
+          expect(error.message).toEqual(`${UDispatcher.name}.register/INVALID_HANDLER`);
         }
       });
     });
@@ -125,7 +125,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toMatch(new RegExp(`^${UDispatcher.name}.dispatch/INVALID_HANDLER_NAME`));
+          expect(error.message).toEqual(`${UDispatcher.name}.dispatch/INVALID_HANDLER_NAME`);
         }
 
         try {
@@ -133,7 +133,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toMatch(new RegExp(`^${UDispatcher.name}.dispatch/INVALID_HANDLER_NAME`));
+          expect(error.message).toEqual(`${UDispatcher.name}.dispatch/INVALID_HANDLER_NAME`);
         }
 
         try {
@@ -141,7 +141,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toMatch(new RegExp(`^${UDispatcher.name}.dispatch/INVALID_HANDLER_NAME`));
+          expect(error.message).toEqual(`${UDispatcher.name}.dispatch/INVALID_HANDLER_NAME`);
         }
 
         try {
@@ -149,7 +149,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toMatch(new RegExp(`^${UDispatcher.name}.dispatch/INVALID_HANDLER_NAME`));
+          expect(error.message).toEqual(`${UDispatcher.name}.dispatch/INVALID_HANDLER_NAME`);
         }
       });
 
@@ -159,7 +159,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toMatch(new RegExp(`^${UDispatcher.name}.dispatch/UNREGISTERED_HANDLER_NAME`));
+          expect(error.message).toEqual(`${UDispatcher.name}.dispatch/UNREGISTERED_HANDLER_NAME`);
         }
       });
     });

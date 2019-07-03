@@ -59,7 +59,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.set/INVALID_KEY`));
+        expect(error.message).toEqual(`${URegistry.name}.set/INVALID_KEY`);
       }
 
       try {
@@ -67,7 +67,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.set/INVALID_KEY`));
+        expect(error.message).toEqual(`${URegistry.name}.set/INVALID_KEY`);
       }
 
       try {
@@ -75,7 +75,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.set/INVALID_KEY`));
+        expect(error.message).toEqual(`${URegistry.name}.set/INVALID_KEY`);
       }
     });
 
@@ -85,7 +85,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.set/INVALID_VALUE`));
+        expect(error.message).toEqual(`${URegistry.name}.set/INVALID_VALUE`);
       }
 
       try {
@@ -93,7 +93,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.set/INVALID_VALUE`));
+        expect(error.message).toEqual(`${URegistry.name}.set/INVALID_VALUE`);
       }
     });
   });
@@ -121,7 +121,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.register/INVALID_KEY`));
+        expect(error.message).toEqual(`${URegistry.name}.register/INVALID_KEY`);
       }
 
       try {
@@ -129,7 +129,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.register/INVALID_KEY`));
+        expect(error.message).toEqual(`${URegistry.name}.register/INVALID_KEY`);
       }
 
       try {
@@ -137,7 +137,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.register/INVALID_KEY`));
+        expect(error.message).toEqual(`${URegistry.name}.register/INVALID_KEY`);
       }
     });
 
@@ -147,7 +147,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.register/INVALID_VALUE_INITIALIZER`));
+        expect(error.message).toEqual(`${URegistry.name}.register/INVALID_VALUE_INITIALIZER`);
       }
 
       try {
@@ -155,7 +155,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.register/INVALID_VALUE_INITIALIZER`));
+        expect(error.message).toEqual(`${URegistry.name}.register/INVALID_VALUE_INITIALIZER`);
       }
 
       try {
@@ -163,7 +163,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.register/INVALID_VALUE_INITIALIZER`));
+        expect(error.message).toEqual(`${URegistry.name}.register/INVALID_VALUE_INITIALIZER`);
       }
     });
   });
@@ -219,7 +219,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.get/INVALID_KEY`));
+        expect(error.message).toEqual(`${URegistry.name}.get/INVALID_KEY`);
       }
 
       try {
@@ -227,7 +227,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.get/INVALID_KEY`));
+        expect(error.message).toEqual(`${URegistry.name}.get/INVALID_KEY`);
       }
 
       try {
@@ -235,7 +235,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.get/INVALID_KEY`));
+        expect(error.message).toEqual(`${URegistry.name}.get/INVALID_KEY`);
       }
     });
 
@@ -245,7 +245,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.get/UNREGISTERED_KEY`));
+        expect(error.message).toEqual(`${URegistry.name}.get/UNREGISTERED_KEY`);
       }
     });
 
@@ -259,7 +259,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.get/INVALID_VALUE_INITIALIZED`));
+        expect(error.message).toEqual(`${URegistry.name}.get/INVALID_VALUE_INITIALIZED`);
       }
 
       registry.register('someService', (): void => {
@@ -271,7 +271,7 @@ describe(URegistry.name, (): void => {
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
-        expect(error.message).toMatch(new RegExp(`^${URegistry.name}.get/UNEXPECTED`));
+        expect(error.message).toEqual(`${URegistry.name}.get/UNEXPECTED`);
         expect(error.cause).toBeInstanceOf(Error);
         expect(error.cause.message).toEqual('foobar');
       }
