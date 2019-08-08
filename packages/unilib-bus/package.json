@@ -1,21 +1,16 @@
 {
-  "name": "unilib",
-  "version": "0.0.6",
-  "description": "The Unilib Library",
+  "name": "unilib-bus",
+  "version": "0.0.2",
+  "description": "UBus (from The Unilib Library)",
   "keywords": [
     "unilib",
-    "unilib error",
-    "unilib registry",
-    "unilib logger",
     "unilib bus",
-    "UError",
-    "URegistry",
-    "ULogger",
     "UBus"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/axiomlogic/unilib.git"
+    "url": "https://github.com/axiomlogic/unilib.git",
+    "directory": "packages/unilib-bus"
   },
   "homepage": "https://github.com/axiomlogic/unilib",
   "bugs": {
@@ -28,10 +23,12 @@
   "main": "index.js",
   "files": [
     "index.d.ts",
-    "index.js"
+    "index.js",
+    "UBus.d.ts",
+    "UBus.js"
   ],
   "scripts": {
-    "clean": "rm -rf coverage/ index.js index.d.ts",
+    "clean": "rm -rf coverage/ index.js index.d.ts UBus.d.ts UBus.js",
     "build": "npm -s run clean && tsc",
     "test": "npm -s run clean && jest",
     "lint": "npm -s run clean && prettier -l '*.ts' && eslint '*.ts' && tsc --noEmit"
@@ -51,9 +48,6 @@
     "typescript": "3.5.3"
   },
   "dependencies": {
-    "unilib-bus": "0.0.2",
-    "unilib-error": "0.0.2",
-    "unilib-logger": "0.0.2",
-    "unilib-registry": "0.0.2"
+    "unilib-error": "0.0.2"
   }
 }

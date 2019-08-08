@@ -1,19 +1,17 @@
-# UniLib (for JavaScript)
+# The Unilib Library
 
-UniLib is a utility library for writing scalable JavaScript applications on the client and server. It's intended to be lightweight and flexible.
+Unilib is a general utility library for writing scalable JavaScript applications. It's intended to be lightweight, flexible, à la carte (i.e., install/import only what you need), and it strives to be mostly isomorphic/universal (i.e., can be used client-side or server-side).
 
-The initial version of UniLib includes:
+Unilib includes the following modules:
 
-| Class       | Description                                                                                                    |
-| ----------- | -------------------------------------------------------------------------------------------------------------- |
-| URegistry   | A generic key-value registry with lazy initialization and IoC (dependency injection) capabilities              |
-| registry    | A global instance of URegistry which can be favored over adding properties to the global object (e.g., window) |
-| UBus        | An in-memory message bus, with support for wildcard topics                                                     |
-| UDisptacher | A generic dispatcher, which dispatches to handler functions by name                                            |
-| ULogger     | A generic logger whose appender implementation can be specified at instantiation                               |
-| UError      | A generic error class with support for a context object                                                        |
+| Class     | Sub-Package                                                      | Description                                                                                                                                          |
+| --------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| UError    | [unilib-error](https://www.npmjs.com/package/unilib-error)       | A generic error class with support for supplying arbitrary instance properties which may provide additional context about the error that has occured |
+| URegistry | [unilib-registry](https://www.npmjs.com/package/unilib-registry) | A generic key-value registry with lazy initialization and IoC (dependency injection) capabilities                                                    |
+| ULogger   | [unilib-logger](https://www.npmjs.com/package/unilib-logger)     | A generic logger whose appender implementation can be specified via the constructor when instantiated                                                |
+| UBus      | [unilib-bus](https://www.npmjs.com/package/unilib-bus)           | An in-memory message bus, with support for wildcard topics                                                                                           |
 
 Notes:
 
-- This library is written in TypeScript and compiled to ES6-compatible JavaScript.
-- While this library has 100% unit test coverage and is being used in Production at a few companies, at this time, we cannot guarantee long-term support
+- All modules in this library are written in TypeScript and compiled to ES6-compatible JavaScript
+- While every module in this library has 100% unit test coverage and is being used in Production at a few companies, at this time, we cannot guarantee long-term support

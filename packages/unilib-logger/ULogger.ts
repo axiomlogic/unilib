@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import registry from './registry';
-import UError from './UError';
+import UError from 'unilib-error';
 
 export namespace ULogger {
   export interface Appender {
@@ -98,15 +97,6 @@ export class ULogger {
     };
 
     wrapper(level, record);
-  }
-
-  public static getLogger(...names: string[]): ULogger {
-    for (const name of names) {
-      if (!registry.isRegistered(name)) continue;
-      const logger = registry.get(name);
-      if (logger instanceof ULogger) return logger;
-    }
-    return new ULogger(LEVEL_SILENT);
   }
 }
 

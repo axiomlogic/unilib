@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import defer from 'lodash.defer';
+import UError from 'unilib-error';
 import UBus from './UBus';
-import UError from './UError';
 
 describe(UBus.name, (): void => {
   let bus: UBus;

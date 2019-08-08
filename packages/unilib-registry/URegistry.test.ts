@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import UError from './UError';
+import UError from 'unilib-error';
 import URegistry from './URegistry';
 
 class TestService {}

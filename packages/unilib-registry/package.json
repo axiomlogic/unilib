@@ -1,21 +1,16 @@
 {
-  "name": "unilib",
-  "version": "0.0.6",
-  "description": "The Unilib Library",
+  "name": "unilib-registry",
+  "version": "0.0.2",
+  "description": "URegistry (from The Unilib Library)",
   "keywords": [
     "unilib",
-    "unilib error",
     "unilib registry",
-    "unilib logger",
-    "unilib bus",
-    "UError",
-    "URegistry",
-    "ULogger",
-    "UBus"
+    "URegistry"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/axiomlogic/unilib.git"
+    "url": "https://github.com/axiomlogic/unilib.git",
+    "directory": "packages/unilib-registry"
   },
   "homepage": "https://github.com/axiomlogic/unilib",
   "bugs": {
@@ -28,18 +23,22 @@
   "main": "index.js",
   "files": [
     "index.d.ts",
-    "index.js"
+    "index.js",
+    "instance.d.ts",
+    "instance.js",
+    "URegistry.d.ts",
+    "URegistry.js"
   ],
   "scripts": {
-    "clean": "rm -rf coverage/ index.js index.d.ts",
+    "clean": "rm -rf coverage/ index.js index.d.ts instance.d.ts instance.js URegistry.d.ts URegistry.js",
     "build": "npm -s run clean && tsc",
     "test": "npm -s run clean && jest",
     "lint": "npm -s run clean && prettier -l '*.ts' && eslint '*.ts' && tsc --noEmit"
   },
   "devDependencies": {
-    "@types/jest": "24.0.17",
+    "@types/jest": "24.0.16",
     "@types/lodash.defer": "4.1.6",
-    "@types/node": "12.6.9",
+    "@types/node": "12.6.8",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
     "eslint": "5.16.0",
@@ -51,9 +50,6 @@
     "typescript": "3.5.3"
   },
   "dependencies": {
-    "unilib-bus": "0.0.2",
-    "unilib-error": "0.0.2",
-    "unilib-logger": "0.0.2",
-    "unilib-registry": "0.0.2"
+    "unilib-error": "0.0.2"
   }
 }

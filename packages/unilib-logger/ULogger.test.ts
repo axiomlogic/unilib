@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import defer from 'lodash.defer';
-import registry from './registry';
-import UError from './UError';
+import UError from 'unilib-error';
 import ULogger from './ULogger';
 
 describe(ULogger.name, (): void => {
@@ -167,31 +166,6 @@ describe(ULogger.name, (): void => {
         expect(appender).toBeCalledTimes(1);
         done();
       }, 10);
-    });
-  });
-
-  describe('static getLogger', (): void => {
-    it('returns ULogger instance from global URegistry, given one of the specified logger names has been registered globally', (): void => {
-      logger = new ULogger(ULogger.LEVEL_TRACE, appender);
-      registry.set('logger', logger);
-      expect(ULogger.getLogger('logger')).toBe(logger);
-      expect(ULogger.getLogger('foobar', 'logger')).toBe(logger);
-      expect(ULogger.getLogger('logger')).toBe(ULogger.getLogger('logger'));
-    });
-
-    it('returns silent ULogger instance from global URegistry, given none of the specified logger names has been registered globally', (): void => {
-      logger = ULogger.getLogger('foobar');
-      expect(logger).toBeInstanceOf(ULogger);
-      expect(logger.getLevel()).toEqual(ULogger.LEVEL_SILENT);
-      logger.log(ULogger.LEVEL_TRACE, {});
-    });
-
-    it('returns silent ULogger instance from global URegistry, given specified name has been registered globally but is not an instance of ULogger', (): void => {
-      registry.set('barbaz', 'barbaz');
-      logger = ULogger.getLogger('barbaz');
-      expect(logger).toBeInstanceOf(ULogger);
-      expect(logger.getLevel()).toEqual(ULogger.LEVEL_SILENT);
-      logger.log(ULogger.LEVEL_TRACE, {});
     });
   });
 });

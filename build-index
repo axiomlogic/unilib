@@ -1,4 +1,0 @@
-#!/usr/bin/env bash
-set -e
-sed "s/from \'\.\//from \'\.\/lib\//g" lib/index.d.ts > index.d.ts
-sed "s/require(\"\.\//require(\"\.\/lib\//g" lib/index.js > index.js
