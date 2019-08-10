@@ -1,6 +1,6 @@
 {
   "name": "unilib-registry",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "URegistry (from The Unilib Library)",
   "keywords": [
     "unilib",
@@ -36,9 +36,9 @@
     "lint": "npm -s run clean && prettier -l '*.ts' && eslint '*.ts' && tsc --noEmit"
   },
   "devDependencies": {
-    "@types/jest": "24.0.16",
+    "@types/jest": "24.0.17",
     "@types/lodash.defer": "4.1.6",
-    "@types/node": "12.6.8",
+    "@types/node": "12.6.9",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
     "eslint": "5.16.0",
@@ -50,6 +50,6 @@
     "typescript": "3.5.3"
   },
   "dependencies": {
-    "unilib-error": "0.0.2"
+    "unilib-error": "0.0.3"
   }
 }

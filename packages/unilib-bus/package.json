@@ -1,6 +1,6 @@
 {
   "name": "unilib-bus",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "UBus (from The Unilib Library)",
   "keywords": [
     "unilib",
@@ -48,6 +48,6 @@
     "typescript": "3.5.3"
   },
   "dependencies": {
-    "unilib-error": "0.0.2"
+    "unilib-error": "0.0.3"
   }
 }

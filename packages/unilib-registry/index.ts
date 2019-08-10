@@ -1,3 +1,3 @@
-import _URegistry from './URegistry';
-export const URegistry = _URegistry;
+export * from './URegistry';
+import URegistry from './URegistry';
 export default URegistry;

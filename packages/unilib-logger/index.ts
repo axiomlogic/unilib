@@ -1,3 +1,3 @@
-import _ULogger from './ULogger';
-export const ULogger = _ULogger;
+export * from './ULogger';
+import ULogger from './ULogger';
 export default ULogger;

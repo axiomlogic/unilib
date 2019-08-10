@@ -2,7 +2,7 @@
 
 Unilib is a general utility library for writing scalable JavaScript applications. It's intended to be lightweight, flexible, à la carte (i.e., install/import only what you need), and it strives to be mostly isomorphic/universal (i.e., can be used client-side or server-side).
 
-This sub-package includes UBus, an in-memory message bus, with support for wildcard topics.
+This sub-package includes UBus, an in-memory message bus with support for wildcard topics.
 
 Notes:
 

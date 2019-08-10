@@ -1,12 +1,12 @@
-import _UBus from 'unilib-bus';
-import _UError from 'unilib-error';
-import _ULogger from 'unilib-logger';
-import _URegistry from 'unilib-registry';
+export * from 'unilib-bus';
+export * from 'unilib-error';
+export * from 'unilib-logger';
+export * from 'unilib-registry';
 
-export const UBus = _UBus;
-export const UError = _UError;
-export const ULogger = _ULogger;
-export const URegistry = _URegistry;
+import UBus from 'unilib-bus';
+import UError from 'unilib-error';
+import ULogger from 'unilib-logger';
+import URegistry from 'unilib-registry';
 
 export default {
   UBus,

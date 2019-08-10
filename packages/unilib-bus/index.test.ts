@@ -5,6 +5,8 @@ const { default: UBus3, UBus: UBus4 } = require('./index');
 
 describe('index', (): void => {
   it('exports', (): void => {
+    const bus: UBus = new UBus();
+    expect(bus).toBeInstanceOf(UBus);
     expect(UBus).toBe(UBus2);
     expect(UBus).toBe(UBus3);
     expect(UBus).toBe(UBus4);

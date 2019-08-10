@@ -1,3 +1,3 @@
-import _UError from './UError';
-export const UError = _UError;
+export * from './UError';
+import UError from './UError';
 export default UError;

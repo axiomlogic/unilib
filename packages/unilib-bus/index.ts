@@ -1,3 +1,3 @@
-import _UBus from './UBus';
-export const UBus = _UBus;
+export * from './UBus';
+import UBus from './UBus';
 export default UBus;

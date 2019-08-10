@@ -5,6 +5,8 @@ const { default: UError3, UError: UError4 } = require('./index');
 
 describe('index', (): void => {
   it('exports', (): void => {
+    const error: UError = new UError();
+    expect(error).toBeInstanceOf(UError);
     expect(UError).toBe(UError2);
     expect(UError).toBe(UError3);
     expect(UError).toBe(UError4);

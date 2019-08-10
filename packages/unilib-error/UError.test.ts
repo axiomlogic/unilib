@@ -7,6 +7,7 @@ describe(UError.name, (): void => {
     it('constructs instance, given no arguments', (): void => {
       error = new UError();
       expect(error.message).toEqual('');
+      expect(error).toBeInstanceOf(Error);
     });
 
     it('constructs instance, given valid message', (): void => {
