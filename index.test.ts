@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 import UBus from 'unilib-bus';
+import UDispatcher from 'unilib-dispatcher';
 import UError from 'unilib-error';
 import ULogger from 'unilib-logger';
 import URegistry from 'unilib-registry';
-import Unilib, { UBus as UBus2, UError as UError2, ULogger as ULogger2, URegistry as URegistry2 } from './index';
-
-const { default: Unilib2, UBus: UBus3, UError: UError3, ULogger: ULogger3, URegistry: URegistry3 } = require('./index');
+import Unilib, { UBus as UBus2, UDispatcher as UDispatcher2, UError as UError2, ULogger as ULogger2, URegistry as URegistry2 } from './index';
+const { default: Unilib2, UBus: UBus3, UDispatcher: UDispatcher3, UError: UError3, ULogger: ULogger3, URegistry: URegistry3 } = require('./index');
 
 describe('index', (): void => {
   it('exports', (): void => {
@@ -17,6 +17,12 @@ describe('index', (): void => {
     expect(UError).toBe(UError2);
     expect(UError).toBe(UError3);
     expect(UError).toBe(Unilib.UError);
+
+    const dispatcher: UDispatcher2 = new UDispatcher();
+    expect(dispatcher).toBeInstanceOf(UDispatcher2);
+    expect(UDispatcher).toBe(UDispatcher2);
+    expect(UDispatcher).toBe(UDispatcher3);
+    expect(UDispatcher).toBe(Unilib.UDispatcher);
 
     const registry: URegistry2 = new URegistry();
     expect(registry).toBeInstanceOf(URegistry2);

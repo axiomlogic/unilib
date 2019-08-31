@@ -4,12 +4,13 @@ Unilib is a general utility library for writing scalable JavaScript applications
 
 Unilib includes the following modules:
 
-| Class     | Sub-Package                                                      | Description                                                                                                                                          |
-| --------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| UError    | [unilib-error](https://www.npmjs.com/package/unilib-error)       | A generic error class with support for supplying arbitrary instance properties which may provide additional context about the error that has occured |
-| URegistry | [unilib-registry](https://www.npmjs.com/package/unilib-registry) | A generic key-value registry with lazy initialization and IoC (dependency injection) capabilities                                                    |
-| ULogger   | [unilib-logger](https://www.npmjs.com/package/unilib-logger)     | A generic logger whose appender implementation can be specified via the constructor when instantiated                                                |
-| UBus      | [unilib-bus](https://www.npmjs.com/package/unilib-bus)           | An in-memory message bus with support for wildcard topics                                                                                            |
+| Class       | Sub-Package                                                          | Description                                                                                                                                          |
+| ----------- | -------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| UError      | [unilib-error](https://www.npmjs.com/package/unilib-error)           | A generic error class with support for supplying arbitrary instance properties which may provide additional context about the error that has occured |
+| URegistry   | [unilib-registry](https://www.npmjs.com/package/unilib-registry)     | A generic key-value registry with lazy initialization and IoC (dependency injection) capabilities                                                    |
+| ULogger     | [unilib-logger](https://www.npmjs.com/package/unilib-logger)         | A generic logger whose appender implementation can be specified via the constructor when instantiated                                                |
+| UBus        | [unilib-bus](https://www.npmjs.com/package/unilib-bus)               | An in-memory message bus with support for wildcard topics                                                                                            |
+| UDispatcher | [unilib-dispatcher](https://www.npmjs.com/package/unilib-dispatcher) | A generic dispatcher class that can route calls to handler functions registered by name                                                              |
 
 Notes:
 

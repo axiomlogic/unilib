@@ -1,0 +1,14 @@
+{
+  "include": ["*.ts"],
+  "exclude": ["*.test.ts"],
+  "compilerOptions": {
+    "target": "es2015",
+    "module": "commonjs",
+    "declaration": true,
+    "outDir": ".",
+    "rootDir": ".",
+    "strict": true,
+    "typeRoots": ["./node_modules/@types"],
+    "esModuleInterop": true
+  }
+}
