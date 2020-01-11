@@ -34,18 +34,18 @@
     "lint": "npm -s run clean && prettier -l '*.ts' && eslint '*.ts' && tsc --noEmit"
   },
   "devDependencies": {
-    "@types/jest": "24.0.18",
+    "@types/jest": "24.0.25",
     "@types/lodash.defer": "4.1.6",
-    "@types/node": "12.7.3",
-    "@typescript-eslint/eslint-plugin": "2.0.0",
-    "@typescript-eslint/parser": "2.0.0",
-    "eslint": "6.3.0",
-    "eslint-config-prettier": "6.1.0",
+    "@types/node": "13.1.6",
+    "@typescript-eslint/eslint-plugin": "2.15.0",
+    "@typescript-eslint/parser": "2.15.0",
+    "eslint": "6.8.0",
+    "eslint-config-prettier": "6.9.0",
     "jest": "24.9.0",
     "lodash.defer": "4.1.0",
-    "prettier": "1.18.2",
-    "ts-jest": "24.0.2",
-    "typescript": "3.5.3"
+    "prettier": "1.19.1",
+    "ts-jest": "24.3.0",
+    "typescript": "3.7.4"
   },
   "dependencies": {
     "unilib-error": "0.0.3"
