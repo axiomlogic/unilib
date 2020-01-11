@@ -52,10 +52,10 @@
     "typescript": "3.7.4"
   },
   "dependencies": {
-    "unilib-bus": "0.0.3",
-    "unilib-dispatcher": "0.0.1",
-    "unilib-error": "0.0.3",
-    "unilib-logger": "0.0.3",
-    "unilib-registry": "0.0.3"
+    "unilib-bus": "0.0.4",
+    "unilib-dispatcher": "0.0.2",
+    "unilib-error": "0.0.4",
+    "unilib-logger": "0.0.4",
+    "unilib-registry": "0.0.4"
   }
 }
