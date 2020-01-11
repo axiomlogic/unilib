@@ -1,6 +1,6 @@
 {
   "name": "unilib-dispatcher",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "UDispatcher (from The Unilib Library)",
   "keywords": [
     "unilib",
@@ -28,8 +28,7 @@
     "UDispatcher.js"
   ],
   "scripts": {},
-  "devDependencies": {},
   "dependencies": {
-    "unilib-error": "0.0.3"
+    "unilib-error": "^0.0.4"
   }
 }

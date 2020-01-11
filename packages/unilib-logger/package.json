@@ -1,6 +1,6 @@
 {
   "name": "unilib-logger",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "ULogger (from The Unilib Library)",
   "keywords": [
     "unilib",
@@ -28,8 +28,7 @@
     "ULogger.js"
   ],
   "scripts": {},
-  "devDependencies": {},
   "dependencies": {
-    "unilib-error": "0.0.3"
+    "unilib-error": "^0.0.4"
   }
 }

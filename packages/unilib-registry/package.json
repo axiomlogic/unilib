@@ -1,6 +1,6 @@
 {
   "name": "unilib-registry",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "URegistry (from The Unilib Library)",
   "keywords": [
     "unilib",
@@ -30,8 +30,7 @@
     "URegistry.js"
   ],
   "scripts": {},
-  "devDependencies": {},
   "dependencies": {
-    "unilib-error": "0.0.3"
+    "unilib-error": "^0.0.4"
   }
 }

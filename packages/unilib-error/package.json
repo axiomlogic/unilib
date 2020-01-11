@@ -1,6 +1,6 @@
 {
   "name": "unilib-error",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "UError (from The Unilib Library)",
   "keywords": [
     "unilib",
@@ -27,7 +27,5 @@
     "UError.d.ts",
     "UError.js"
   ],
-  "scripts": {},
-  "devDependencies": {},
-  "dependencies": {}
+  "scripts": {}
 }
