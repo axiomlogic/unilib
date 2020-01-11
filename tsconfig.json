@@ -1,6 +1,6 @@
 {
-  "include": ["*.ts"],
-  "exclude": ["*.test.ts"],
+  "include": ["*.ts", "packages/**/*.ts"],
+  "exclude": ["*.test.ts", "packages/**/*.test.ts"],
   "compilerOptions": {
     "target": "es2015",
     "module": "commonjs",

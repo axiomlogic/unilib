@@ -170,5 +170,5 @@ tags
 
 # End of https://www.gitignore.io/api/diff,git,macos,node,patch,vim,visualstudiocode
 
-index.d.ts
-index.js
+*.d.ts
+*.js

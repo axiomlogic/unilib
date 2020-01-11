@@ -31,10 +31,10 @@
     "index.js"
   ],
   "scripts": {
-    "clean": "rm -rf coverage/ index.js index.d.ts",
+    "clean": "rm -rf coverage/ index.js index.d.ts packages/*/index.js packages/*/index.d.ts",
     "build": "npm -s run clean && tsc",
     "test": "npm -s run clean && jest",
-    "lint": "npm -s run clean && prettier -l '*.ts' && eslint '*.ts' && tsc --noEmit"
+    "lint": "npm -s run clean && prettier -l '*.ts' 'packages/**/*.ts' && eslint '*.ts' 'packages/**/*.ts' && tsc --noEmit"
   },
   "devDependencies": {
     "@types/jest": "24.0.25",
@@ -45,6 +45,7 @@
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.9.0",
     "jest": "24.9.0",
+    "lerna": "^3.20.2",
     "lodash.defer": "4.1.0",
     "prettier": "1.19.1",
     "ts-jest": "24.3.0",
