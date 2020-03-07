@@ -31,25 +31,25 @@
     "index.js"
   ],
   "scripts": {
-    "clean": "rm -rf coverage/ index.js index.d.ts packages/*/index.js packages/*/index.d.ts",
+    "clean": "rm -rf coverage/ index.js index.d.ts packages/*/index.js packages/*/U*.js packages/*/index.d.ts packages/*/U*.d.ts",
     "build": "npm -s run clean && tsc",
     "test": "npm -s run clean && jest",
     "lint": "npm -s run clean && prettier -l '*.ts' 'packages/**/*.ts' && eslint '*.ts' 'packages/**/*.ts' && tsc --noEmit"
   },
   "devDependencies": {
-    "@types/jest": "24.0.25",
+    "@types/jest": "25.1.4",
     "@types/lodash.defer": "4.1.6",
-    "@types/node": "13.1.6",
-    "@typescript-eslint/eslint-plugin": "2.15.0",
-    "@typescript-eslint/parser": "2.15.0",
+    "@types/node": "13.9.0",
+    "@typescript-eslint/eslint-plugin": "2.22.0",
+    "@typescript-eslint/parser": "2.22.0",
     "eslint": "6.8.0",
-    "eslint-config-prettier": "6.9.0",
-    "jest": "24.9.0",
-    "lerna": "^3.20.2",
+    "eslint-config-prettier": "6.10.0",
+    "jest": "25.1.0",
+    "lerna": "3.20.2",
     "lodash.defer": "4.1.0",
     "prettier": "1.19.1",
-    "ts-jest": "24.3.0",
-    "typescript": "3.7.4"
+    "ts-jest": "25.2.1",
+    "typescript": "3.8.3"
   },
   "dependencies": {
     "unilib-bus": "0.0.4",
