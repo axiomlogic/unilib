@@ -31,7 +31,7 @@
     "index.js"
   ],
   "scripts": {
-    "clean": "rm -rf coverage/ index.{js,d.ts} packages/*/index.{js,d.ts} packages/*/U*.{js,d.ts} packages/*/instance.{.js,d.ts}",
+    "clean": "rm -rf coverage/ index.{js,d.ts} packages/*/index.{js,d.ts} packages/*/U*.{js,d.ts} packages/*/instance.{js,d.ts}",
     "build": "npm -s run clean && tsc",
     "test": "npm -s run clean && jest",
     "lint": "npm -s run clean && prettier -l '*.ts' 'packages/**/*.ts' && eslint '*.ts' 'packages/**/*.ts' && tsc --noEmit"
@@ -52,10 +52,10 @@
     "typescript": "3.8.3"
   },
   "dependencies": {
-    "unilib-bus": "0.0.4",
-    "unilib-dispatcher": "0.0.2",
-    "unilib-error": "0.0.4",
-    "unilib-logger": "0.0.4",
-    "unilib-registry": "0.0.4"
+    "unilib-bus": "0.0.7",
+    "unilib-dispatcher": "0.0.5",
+    "unilib-error": "0.0.6",
+    "unilib-logger": "0.0.7",
+    "unilib-registry": "0.0.7"
   }
 }
