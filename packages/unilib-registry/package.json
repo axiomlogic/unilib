@@ -31,6 +31,6 @@
   ],
   "scripts": {},
   "dependencies": {
-    "unilib-error": "^0.0.4"
+    "unilib-error": "0.0.4"
   }
 }
