@@ -26,7 +26,15 @@ describe(
       it('registers handler, given valid name and handler', (): void => {
         dispatcher.register('foobar', (): void => {});
 
-        expect(dispatcher.isRegistered('foobar'));
+        expect(dispatcher.canDispatch('foobar')).toBe(true);
+      });
+
+      it('registers handler, given valid wildcard name and handler', () => {
+        dispatcher.register('foobar*', (): void => {});
+
+        expect(dispatcher.canDispatch('foobar')).toBe(true);
+        expect(dispatcher.canDispatch('foobarbaz')).toBe(true);
+        expect(dispatcher.canDispatch('foo')).toBe(false);
       });
 
       it('throws error, given invalid name', (): void => {
@@ -117,11 +125,24 @@ describe(
         dispatcher.register('foobar', (): number => 0);
 
         expect(await dispatcher.dispatch('foobar')).toBe(0);
+
+        dispatcher.register('foobar*', (): number => 0);
+
+        expect(await dispatcher.dispatch('foobarX')).toBe(0);
+        expect(await dispatcher.dispatch('foobarY')).toBe(0);
       });
 
       it('throws error, given invalid name', async (): Promise<void> => {
         try {
           await dispatcher.dispatch('');
+          fail(new Error('Unexpected'));
+        } catch (error) {
+          expect(error).toBeInstanceOf(UError);
+          expect(error.message).toEqual(`${UDispatcher.name}.dispatch/INVALID_HANDLER_NAME`);
+        }
+
+        try {
+          await dispatcher.dispatch('foobar*');
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -159,7 +180,7 @@ describe(
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
-          expect(error.message).toEqual(`${UDispatcher.name}.dispatch/UNREGISTERED_HANDLER_NAME`);
+          expect(error.message).toEqual(`${UDispatcher.name}.dispatch/UNREGISTERED_HANDLER`);
         }
       });
     });

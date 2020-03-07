@@ -2,6 +2,8 @@
 
 import UError from 'unilib-error';
 
+const WILDCARD = '*';
+
 export namespace UDispatcher {
   export interface Handler {
     (...parameters: NonNullable<any>[]): any | Promise<any>;
@@ -30,29 +32,46 @@ export class UDispatcher {
     this.__[name] = handler;
   }
 
-  public isRegistered(name: string): boolean {
-    return Boolean(this.__[name]);
+  public canDispatch(name: string): boolean {
+    return Boolean(this._getHandler(name));
+  }
+
+  private _getHandler(name: string): UDispatcher.Handler | undefined {
+    for (const _name of Object.keys(this.__)) {
+      if (
+        _name === name ||
+        (_name.endsWith(WILDCARD) && name.startsWith(_name.slice(0, -1)))
+      ) {
+        return this.__[_name];
+      }
+    }
   }
 
   public async dispatch(
     name: string,
     ...parameters: NonNullable<any>
   ): Promise<any> {
-    if (typeof name !== 'string' || (name = name.trim()) === '') {
+    if (
+      typeof name !== 'string' ||
+      (name = name.trim()) === '' ||
+      name.endsWith(WILDCARD)
+    ) {
       throw new UError(
         `${this.constructor.name}.dispatch/INVALID_HANDLER_NAME`,
         { context: { name } }
       );
     }
 
-    if (!this.isRegistered(name)) {
+    const handler = this._getHandler(name);
+
+    if (!handler) {
       throw new UError(
-        `${this.constructor.name}.dispatch/UNREGISTERED_HANDLER_NAME`,
+        `${this.constructor.name}.dispatch/UNREGISTERED_HANDLER`,
         { context: { name } }
       );
     }
 
-    return this.__[name](...parameters);
+    return handler(...parameters);
   }
 }
 
