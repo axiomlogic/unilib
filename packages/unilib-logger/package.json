@@ -25,7 +25,9 @@
     "index.d.ts",
     "index.js",
     "ULogger.d.ts",
-    "ULogger.js"
+    "ULogger.js",
+    "ILogger.d.ts",
+    "ILogger.js"
   ],
   "scripts": {},
   "dependencies": {

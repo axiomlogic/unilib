@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import UError from 'unilib-error';
+import IDispatcher from './IDispatcher';
 
 const WILDCARD = '*';
 
 export namespace UDispatcher {
   export interface Handler {
-    (...parameters: NonNullable<any>[]): any | Promise<any>;
+    (...parameters: any[]): any | Promise<any>;
   }
 }
 
-export class UDispatcher {
+export class UDispatcher implements IDispatcher {
   private readonly __: {
     [topic: string]: UDispatcher.Handler;
   } = {};
@@ -47,10 +48,7 @@ export class UDispatcher {
     }
   }
 
-  public async dispatch(
-    name: string,
-    ...parameters: NonNullable<any>
-  ): Promise<any> {
+  public async dispatch(name: string, ...parameters: any[]): Promise<any> {
     if (
       typeof name !== 'string' ||
       (name = name.trim()) === '' ||

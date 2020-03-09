@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import UError from 'unilib-error';
+import ILogger from './ILogger';
 
 export namespace ULogger {
   export interface Appender {
@@ -24,7 +25,7 @@ const levels: { [key: string]: number } = {
   [LEVEL_ERROR]: 4
 };
 
-export class ULogger {
+export class ULogger implements ILogger {
   public static readonly LEVEL_SILENT = LEVEL_SILENT;
   public static readonly LEVEL_TRACE = LEVEL_TRACE;
   public static readonly LEVEL_DEBUG = LEVEL_DEBUG;

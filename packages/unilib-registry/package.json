@@ -27,7 +27,9 @@
     "instance.d.ts",
     "instance.js",
     "URegistry.d.ts",
-    "URegistry.js"
+    "URegistry.js",
+    "IRegistry.d.ts",
+    "IRegistry.js"
   ],
   "scripts": {},
   "dependencies": {

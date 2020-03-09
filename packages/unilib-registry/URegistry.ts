@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import UError from 'unilib-error';
+import IRegistry from './IRegistry';
 
 export namespace URegistry {
   export interface Initializer {
@@ -8,7 +9,7 @@ export namespace URegistry {
   }
 }
 
-export class URegistry {
+export class URegistry implements IRegistry {
   private readonly __: {
     [key: string]: {
       value?: NonNullable<any>;

@@ -8,7 +8,6 @@
     "outDir": ".",
     "rootDir": ".",
     "strict": true,
-    "typeRoots": ["./node_modules/@types"],
     "esModuleInterop": true
   }
 }

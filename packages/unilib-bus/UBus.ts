@@ -1,21 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import UError from 'unilib-error';
+import IBus from './IBus';
 
 const WILDCARD = '*';
 
-export namespace UBus {
-  export interface Subscriber {
-    (topic: string, message?: NonNullable<any>): void | Promise<void>;
-  }
-}
-
-export class UBus {
+export class UBus implements IBus {
   private readonly __: {
-    [topic: string]: UBus.Subscriber[];
+    [topic: string]: IBus.Subscriber[];
   } = {};
 
-  public subscribe(topic: string, subscriber: UBus.Subscriber): () => void {
+  public subscribe(
+    topic: string,
+    subscriber: IBus.Subscriber
+  ): IBus.UnsubscribeCallback {
     if (typeof topic !== 'string' || (topic = topic.trim()) === '') {
       throw new UError(`${this.constructor.name}.subscribe/INVALID_TOPIC`, {
         context: { topic }
@@ -33,12 +31,12 @@ export class UBus {
 
     const unsubscribe = (): void => {
       this.__[topic] = this.__[topic].filter(
-        (s: UBus.Subscriber): boolean => s !== subscriber
+        (s: IBus.Subscriber): boolean => s !== subscriber
       );
     };
 
     if (
-      !this.__[topic].some((s: UBus.Subscriber): boolean => s === subscriber)
+      !this.__[topic].some((s: IBus.Subscriber): boolean => s === subscriber)
     ) {
       this.__[topic] = [...this.__[topic], subscriber];
     }
@@ -57,7 +55,7 @@ export class UBus {
       });
     }
 
-    let subscribers: UBus.Subscriber[] = [];
+    let subscribers: IBus.Subscriber[] = [];
 
     for (const _topic of Object.keys(this.__)) {
       if (
@@ -71,7 +69,7 @@ export class UBus {
     type Wrapper = () => Promise<void>;
 
     const wrappers = subscribers.map(
-      (subscriber: UBus.Subscriber): Wrapper => async (): Promise<void> => {
+      (subscriber: IBus.Subscriber): Wrapper => async (): Promise<void> => {
         try {
           await subscriber(
             topic,

@@ -25,7 +25,9 @@
     "index.d.ts",
     "index.js",
     "UBus.d.ts",
-    "UBus.js"
+    "UBus.js",
+    "IBus.d.ts",
+    "IBus.js"
   ],
   "scripts": {},
   "dependencies": {
