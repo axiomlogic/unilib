@@ -39,9 +39,9 @@
   "devDependencies": {
     "@types/jest": "25.1.4",
     "@types/lodash.defer": "4.1.6",
-    "@types/node": "13.9.0",
-    "@typescript-eslint/eslint-plugin": "2.22.0",
-    "@typescript-eslint/parser": "2.22.0",
+    "@types/node": "13.9.1",
+    "@typescript-eslint/eslint-plugin": "2.23.0",
+    "@typescript-eslint/parser": "2.23.0",
     "eslint": "6.8.0",
     "eslint-config-prettier": "6.10.0",
     "jest": "25.1.0",
@@ -52,10 +52,10 @@
     "typescript": "3.8.3"
   },
   "dependencies": {
-    "unilib-bus": "0.0.7",
-    "unilib-dispatcher": "0.0.5",
+    "unilib-bus": "0.0.8",
+    "unilib-dispatcher": "0.0.6",
     "unilib-error": "0.0.6",
-    "unilib-logger": "0.0.7",
-    "unilib-registry": "0.0.7"
+    "unilib-logger": "0.0.8",
+    "unilib-registry": "0.0.8"
   }
 }
