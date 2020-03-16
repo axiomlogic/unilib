@@ -139,35 +139,7 @@ describe(UBus.name, (): void => {
 
   describe('publish', (): void => {
     it('publishes message, given valid topic and message', (done): void => {
-      const subscriber = jest.fn().mockImplementation((topic, message): void => {
-        try {
-          expect(topic).toMatch(/foobar\/\d+/);
-
-          const suffix = topic.slice(-1);
-
-          switch (suffix) {
-            case '0':
-              expect(message).toEqual('');
-              break;
-            case '1':
-              expect(message).toEqual({});
-              break;
-            case '2':
-              expect(message).toEqual('xyz');
-              break;
-            case '3':
-              expect(message).toEqual(123);
-              break;
-            case '4':
-              expect(message).toEqual({});
-              break;
-            default:
-              break;
-          }
-        } catch (error) {
-          fail(error);
-        }
-      });
+      const subscriber = jest.fn();
 
       bus.subscribe('foobar/*', subscriber);
 
@@ -180,7 +152,7 @@ describe(UBus.name, (): void => {
       bus.publish('foobar/3', 123);
 
       defer((): void => {
-        expect(subscriber).toHaveBeenNthCalledWith(1, 'foobar/0', '');
+        expect(subscriber).toHaveBeenNthCalledWith(1, 'foobar/0', undefined);
         expect(subscriber).toHaveBeenNthCalledWith(2, 'foobar/1', {});
         expect(subscriber).toHaveBeenNthCalledWith(3, 'foobar/2', 'xyz');
         expect(subscriber).toHaveBeenNthCalledWith(4, 'foobar/3', 123);

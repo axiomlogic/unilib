@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export interface IRegistry {
-  get(key: string, defaultValue?: NonNullable<any>): NonNullable<any>;
+  get<T = NonNullable<any>>(key: string, defaultValue?: T): T;
 }
 
 export default IRegistry;

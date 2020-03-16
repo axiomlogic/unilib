@@ -6,17 +6,20 @@ import IDispatcher from './IDispatcher';
 const WILDCARD = '*';
 
 export namespace UDispatcher {
-  export interface Handler {
-    (...parameters: any[]): any | Promise<any>;
+  export interface Handler<S = any, T = any> {
+    (...parameters: S[]): T | Promise<T>;
   }
 }
 
 export class UDispatcher implements IDispatcher {
   private readonly __: {
-    [topic: string]: UDispatcher.Handler;
+    [name: string]: UDispatcher.Handler;
   } = {};
 
-  public register(name: string, handler: UDispatcher.Handler): void {
+  public register<S = any, T = any>(
+    name: string,
+    handler: UDispatcher.Handler<S, T>
+  ): void {
     if (typeof name !== 'string' || (name = name.trim()) === '') {
       throw new UError(
         `${this.constructor.name}.register/INVALID_HANDLER_NAME`,
@@ -37,7 +40,9 @@ export class UDispatcher implements IDispatcher {
     return Boolean(this._getHandler(name));
   }
 
-  private _getHandler(name: string): UDispatcher.Handler | undefined {
+  private _getHandler<S = any, T = any>(
+    name: string
+  ): UDispatcher.Handler<S, T> | undefined {
     for (const _name of Object.keys(this.__)) {
       if (
         _name === name ||
@@ -48,7 +53,10 @@ export class UDispatcher implements IDispatcher {
     }
   }
 
-  public async dispatch(name: string, ...parameters: any[]): Promise<any> {
+  public async dispatch<S = any, T = any>(
+    name: string,
+    ...parameters: S[]
+  ): Promise<T> {
     if (
       typeof name !== 'string' ||
       (name = name.trim()) === '' ||
@@ -60,7 +68,7 @@ export class UDispatcher implements IDispatcher {
       );
     }
 
-    const handler = this._getHandler(name);
+    const handler = this._getHandler<S, T>(name);
 
     if (!handler) {
       throw new UError(

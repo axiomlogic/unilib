@@ -10,9 +10,9 @@ export class UBus implements IBus {
     [topic: string]: IBus.Subscriber[];
   } = {};
 
-  public subscribe(
+  public subscribe<T = any>(
     topic: string,
-    subscriber: IBus.Subscriber
+    subscriber: IBus.Subscriber<T>
   ): IBus.UnsubscribeCallback {
     if (typeof topic !== 'string' || (topic = topic.trim()) === '') {
       throw new UError(`${this.constructor.name}.subscribe/INVALID_TOPIC`, {
@@ -44,7 +44,7 @@ export class UBus implements IBus {
     return unsubscribe;
   }
 
-  public publish(topic: string, message?: NonNullable<any>): void {
+  public publish<T = any>(topic: string, message?: T): void {
     if (
       typeof topic !== 'string' ||
       (topic = topic.trim()) === '' ||
@@ -55,7 +55,7 @@ export class UBus implements IBus {
       });
     }
 
-    let subscribers: IBus.Subscriber[] = [];
+    let subscribers: IBus.Subscriber<T>[] = [];
 
     for (const _topic of Object.keys(this.__)) {
       if (
@@ -69,12 +69,9 @@ export class UBus implements IBus {
     type Wrapper = () => Promise<void>;
 
     const wrappers = subscribers.map(
-      (subscriber: IBus.Subscriber): Wrapper => async (): Promise<void> => {
+      (subscriber: IBus.Subscriber<T>): Wrapper => async (): Promise<void> => {
         try {
-          await subscriber(
-            topic,
-            message === undefined || message === null ? '' : message
-          );
+          await subscriber(topic, message);
         } catch (error) {}
       }
     );

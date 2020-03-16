@@ -6,18 +6,18 @@ export namespace IBus {
     (): void;
   }
 
-  export interface Subscriber {
-    (topic: string, message?: NonNullable<any>): void | Promise<void>;
+  export interface Subscriber<T = any> {
+    (topic: string, message?: T): void | Promise<void>;
   }
 }
 
 export interface IBus {
-  subscribe(
+  subscribe<T = any>(
     topic: string,
-    subscriber: IBus.Subscriber
+    subscriber: IBus.Subscriber<T>
   ): IBus.UnsubscribeCallback;
 
-  publish(topic: string, message?: NonNullable<any>): void;
+  publish<T = any>(topic: string, message?: T): void;
 }
 
 export default IBus;

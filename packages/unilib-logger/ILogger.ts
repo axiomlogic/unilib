@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/interface-name-prefix */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-export interface ILogger {
-  log(level: string, record: NonNullable<any>): void;
+export interface ILogger<T = NonNullable<any>> {
+  log(level: string, record: T): void;
 }
 
 export default ILogger;

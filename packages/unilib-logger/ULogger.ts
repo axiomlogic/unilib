@@ -4,8 +4,8 @@ import UError from 'unilib-error';
 import ILogger from './ILogger';
 
 export namespace ULogger {
-  export interface Appender {
-    (level: string, record: NonNullable<any>): void | Promise<void>;
+  export interface Appender<T = NonNullable<any>> {
+    (level: string, record: T): void | Promise<void>;
   }
 }
 
@@ -25,7 +25,7 @@ const levels: { [key: string]: number } = {
   [LEVEL_ERROR]: 4
 };
 
-export class ULogger implements ILogger {
+export class ULogger<T = NonNullable<any>> implements ILogger<T> {
   public static readonly LEVEL_SILENT = LEVEL_SILENT;
   public static readonly LEVEL_TRACE = LEVEL_TRACE;
   public static readonly LEVEL_DEBUG = LEVEL_DEBUG;
@@ -36,7 +36,7 @@ export class ULogger implements ILogger {
   private _level: string;
   private readonly _appender: ULogger.Appender | undefined;
 
-  public constructor(level: string, appender?: ULogger.Appender) {
+  public constructor(level: string, appender?: ULogger.Appender<T>) {
     if (
       typeof level !== 'string' ||
       typeof levels[(level = level.trim().toUpperCase())] !== 'number'
@@ -74,7 +74,7 @@ export class ULogger implements ILogger {
     this._level = level;
   }
 
-  public log(level: string, record: NonNullable<any>): void {
+  public log(level: string, record: T): void {
     if (
       this._level === LEVEL_SILENT ||
       level === LEVEL_SILENT ||
@@ -88,10 +88,7 @@ export class ULogger implements ILogger {
 
     const appender = this._appender as ULogger.Appender;
 
-    const wrapper = async (
-      level: string,
-      record: NonNullable<any>
-    ): Promise<any> => {
+    const wrapper = async (level: string, record: T): Promise<any> => {
       try {
         await appender(level, record);
       } catch (error) {}
