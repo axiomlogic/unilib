@@ -1,20 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 import UError from 'unilib-error';
-import ILogger from './ILogger';
+import ILogger, {
+  LEVEL_DEBUG,
+  LEVEL_ERROR,
+  LEVEL_INFO,
+  LEVEL_SILENT,
+  LEVEL_TRACE,
+  LEVEL_WARN,
+  LogLevel
+} from './ILogger';
 
 export namespace ULogger {
   export interface Appender<T = NonNullable<any>> {
-    (level: string, record: T): void | Promise<void>;
+    (level: LogLevel, record: T): void | Promise<void>;
   }
 }
-
-const LEVEL_SILENT = 'SILENT';
-const LEVEL_TRACE = 'TRACE';
-const LEVEL_DEBUG = 'DEBUG';
-const LEVEL_INFO = 'INFO';
-const LEVEL_WARN = 'WARN';
-const LEVEL_ERROR = 'ERROR';
 
 const levels: { [key: string]: number } = {
   [LEVEL_SILENT]: -1,
@@ -33,14 +34,11 @@ export class ULogger<T = NonNullable<any>> implements ILogger<T> {
   public static readonly LEVEL_WARN = LEVEL_WARN;
   public static readonly LEVEL_ERROR = LEVEL_ERROR;
 
-  private _level: string;
-  private readonly _appender: ULogger.Appender | undefined;
+  private _level: LogLevel;
+  private readonly _appender: ULogger.Appender = () => {};
 
-  public constructor(level: string, appender?: ULogger.Appender<T>) {
-    if (
-      typeof level !== 'string' ||
-      typeof levels[(level = level.trim().toUpperCase())] !== 'number'
-    ) {
+  public constructor(level: LogLevel, appender?: ULogger.Appender<T>) {
+    if (typeof level !== 'string' || typeof levels[level] !== 'number') {
       throw new UError(`${this.constructor.name}.constructor/INVALID_LEVEL`, {
         context: { level }
       });
@@ -54,18 +52,15 @@ export class ULogger<T = NonNullable<any>> implements ILogger<T> {
     }
 
     this._level = level;
-    this._appender = appender;
+    if (appender) this._appender = appender;
   }
 
-  public getLevel(): string {
+  public getLevel(): LogLevel {
     return this._level;
   }
 
-  public setLevel(level: string): void {
-    if (
-      typeof level !== 'string' ||
-      typeof levels[(level = level.trim().toUpperCase())] !== 'number'
-    ) {
+  public setLevel(level: LogLevel): void {
+    if (typeof level !== 'string' || typeof levels[level] !== 'number') {
       throw new UError(`${this.constructor.name}.setLevel/INVALID_LEVEL`, {
         context: { level }
       });
@@ -74,7 +69,7 @@ export class ULogger<T = NonNullable<any>> implements ILogger<T> {
     this._level = level;
   }
 
-  public log(level: string, record: T): void {
+  public log(level: LogLevel, record: T): void {
     if (
       this._level === LEVEL_SILENT ||
       level === LEVEL_SILENT ||
@@ -86,11 +81,9 @@ export class ULogger<T = NonNullable<any>> implements ILogger<T> {
       return;
     }
 
-    const appender = this._appender as ULogger.Appender;
-
-    const wrapper = async (level: string, record: T): Promise<any> => {
+    const wrapper = async (level: LogLevel, record: T): Promise<void> => {
       try {
-        await appender(level, record);
+        await this._appender(level, record);
       } catch (error) {}
     };
 

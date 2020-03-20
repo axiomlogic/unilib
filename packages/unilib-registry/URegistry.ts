@@ -5,7 +5,7 @@ import IRegistry from './IRegistry';
 
 export namespace URegistry {
   export interface Initializer<T = NonNullable<any>> {
-    (registry?: URegistry): T;
+    (registry?: IRegistry): T;
   }
 }
 
@@ -52,7 +52,7 @@ export class URegistry implements IRegistry {
       );
     }
 
-    this.__[key] = { initializer, value: Infinity };
+    this.__[key] = { initializer, value: 0 };
   }
 
   public isRegistered(key: string): boolean {

@@ -7,7 +7,7 @@ export namespace IBus {
   }
 
   export interface Subscriber<T = any> {
-    (topic: string, message?: T): void | Promise<void>;
+    (topic: string, message: T): void | Promise<void>;
   }
 }
 
@@ -17,7 +17,11 @@ export interface IBus {
     subscriber: IBus.Subscriber<T>
   ): IBus.UnsubscribeCallback;
 
-  publish<T = any>(topic: string, message?: T): void;
+  publish<T = any>(topic: string, message: T): void;
 }
+
+export const IBus = {
+  name: 'IBus'
+};
 
 export default IBus;

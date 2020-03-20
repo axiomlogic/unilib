@@ -35,9 +35,9 @@ describe(UBus.name, (): void => {
       const subscriber2 = jest.fn();
       bus.subscribe('foobar/2', subscriber2);
 
-      bus.publish('foobar/1');
+      bus.publish('foobar/1', {});
 
-      bus.publish('foobar/2');
+      bus.publish('foobar/2', {});
 
       defer((): void => {
         expect(subscriber1).toHaveBeenCalledTimes(2);
@@ -51,7 +51,7 @@ describe(UBus.name, (): void => {
       bus.subscribe('foobar', subscriber);
       bus.subscribe('foobar', subscriber);
 
-      bus.publish('foobar');
+      bus.publish('foobar', {});
 
       defer((): void => {
         expect(subscriber).toHaveBeenCalledTimes(1);
@@ -64,11 +64,11 @@ describe(UBus.name, (): void => {
 
       const unsubscribe = bus.subscribe('foobar', subscriber);
 
-      bus.publish('foobar');
+      bus.publish('foobar', {});
 
       unsubscribe();
 
-      bus.publish('foobar');
+      bus.publish('foobar', {});
 
       defer((): void => {
         expect(subscriber).toHaveBeenCalledTimes(1);
@@ -143,7 +143,7 @@ describe(UBus.name, (): void => {
 
       bus.subscribe('foobar/*', subscriber);
 
-      bus.publish('foobar/0');
+      bus.publish('foobar/0', undefined);
 
       bus.publish('foobar/1', {});
 

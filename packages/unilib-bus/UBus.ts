@@ -44,7 +44,7 @@ export class UBus implements IBus {
     return unsubscribe;
   }
 
-  public publish<T = any>(topic: string, message?: T): void {
+  public publish<T = any>(topic: string, message: T): void {
     if (
       typeof topic !== 'string' ||
       (topic = topic.trim()) === '' ||
