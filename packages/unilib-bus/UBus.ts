@@ -69,11 +69,14 @@ export class UBus implements IBus {
     type Wrapper = () => Promise<void>;
 
     const wrappers = subscribers.map(
-      (subscriber: IBus.Subscriber<T>): Wrapper => async (): Promise<void> => {
-        try {
-          await subscriber(topic, message);
-        } catch (error) {}
-      }
+      (subscriber: IBus.Subscriber<T>): Wrapper =>
+        async (): Promise<void> => {
+          try {
+            await subscriber(topic, message);
+          } catch (error) {
+            void error;
+          }
+        }
     );
 
     for (const wrapper of wrappers) {

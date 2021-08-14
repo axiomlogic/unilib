@@ -4,10 +4,15 @@ module.exports = {
   parserOptions: {
     project: ['./tsconfig.json', './tsconfig.test.json']
   },
+  env: {
+    node: true,
+    commonjs: true,
+    jest: true
+  },
   extends: [
+    'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'prettier',
-    'prettier/@typescript-eslint'
+    'prettier'
   ],
   rules: {
     '@typescript-eslint/no-empty-function': 0,

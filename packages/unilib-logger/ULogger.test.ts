@@ -31,7 +31,7 @@ describe(ULogger.name, (): void => {
 
     it('throws, given invalid level', (): void => {
       try {
-        logger = new ULogger(('' as unknown) as LogLevel, appender);
+        logger = new ULogger('' as unknown as LogLevel, appender);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -39,7 +39,7 @@ describe(ULogger.name, (): void => {
       }
 
       try {
-        logger = new ULogger((123 as unknown) as LogLevel, appender);
+        logger = new ULogger(123 as unknown as LogLevel, appender);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -47,7 +47,7 @@ describe(ULogger.name, (): void => {
       }
 
       try {
-        logger = new ULogger((undefined as unknown) as LogLevel, appender);
+        logger = new ULogger(undefined as unknown as LogLevel, appender);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -55,7 +55,7 @@ describe(ULogger.name, (): void => {
       }
 
       try {
-        logger = new ULogger((null as unknown) as LogLevel, appender);
+        logger = new ULogger(null as unknown as LogLevel, appender);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -65,21 +65,21 @@ describe(ULogger.name, (): void => {
 
     it('throws, given invalid appender', (): void => {
       try {
-        logger = new ULogger(ILogger.LEVEL_TRACE, ('' as unknown) as ULogger.Appender);
+        logger = new ULogger(ILogger.LEVEL_TRACE, '' as unknown as ULogger.Appender);
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
         expect(error.message).toEqual(`${ULogger.name}.constructor/INVALID_APPENDER`);
       }
 
       try {
-        logger = new ULogger(ILogger.LEVEL_TRACE, (undefined as unknown) as ULogger.Appender);
+        logger = new ULogger(ILogger.LEVEL_TRACE, undefined as unknown as ULogger.Appender);
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
         expect(error.message).toEqual(`${ULogger.name}.constructor/INVALID_APPENDER`);
       }
 
       try {
-        logger = new ULogger(ILogger.LEVEL_TRACE, (null as unknown) as ULogger.Appender);
+        logger = new ULogger(ILogger.LEVEL_TRACE, null as unknown as ULogger.Appender);
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
         expect(error.message).toEqual(`${ULogger.name}.constructor/INVALID_APPENDER`);
@@ -104,7 +104,7 @@ describe(ULogger.name, (): void => {
     it('throws, given an invalid level', (): void => {
       try {
         logger = new ULogger(ILogger.LEVEL_TRACE, appender);
-        logger.setLevel(('' as unknown) as LogLevel);
+        logger.setLevel('' as unknown as LogLevel);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -113,7 +113,7 @@ describe(ULogger.name, (): void => {
 
       try {
         logger = new ULogger(ILogger.LEVEL_TRACE, appender);
-        logger.setLevel((undefined as unknown) as LogLevel);
+        logger.setLevel(undefined as unknown as LogLevel);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -138,7 +138,7 @@ describe(ULogger.name, (): void => {
 
     it('does not invoke appender, given invalid level', (done): void => {
       logger = new ULogger(ILogger.LEVEL_TRACE, appender);
-      logger.log(('INVALID' as unknown) as LogLevel, {});
+      logger.log('INVALID' as unknown as LogLevel, {});
 
       defer((): void => {
         expect(appender).not.toBeCalled();

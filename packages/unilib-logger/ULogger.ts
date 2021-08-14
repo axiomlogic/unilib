@@ -84,7 +84,9 @@ export class ULogger<T = NonNullable<any>> implements ILogger<T> {
     const wrapper = async (level: LogLevel, record: T): Promise<void> => {
       try {
         await this._appender(level, record);
-      } catch (error) {}
+      } catch (error) {
+        void error;
+      }
     };
 
     wrapper(level, record);

@@ -20,7 +20,7 @@ describe(URegistry.name, (): void => {
 
     it('returns false, given key is not registered', (): void => {
       expect(!registry.isRegistered('someString'));
-      expect(!registry.isRegistered(({} as unknown) as string));
+      expect(!registry.isRegistered({} as unknown as string));
     });
   });
 
@@ -55,7 +55,7 @@ describe(URegistry.name, (): void => {
       }
 
       try {
-        registry.set(({} as unknown) as string, 'foobar');
+        registry.set({} as unknown as string, 'foobar');
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -63,7 +63,7 @@ describe(URegistry.name, (): void => {
       }
 
       try {
-        registry.set((undefined as unknown) as string, 'foobar');
+        registry.set(undefined as unknown as string, 'foobar');
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -71,7 +71,7 @@ describe(URegistry.name, (): void => {
       }
 
       try {
-        registry.set((null as unknown) as string, 'foobar');
+        registry.set(null as unknown as string, 'foobar');
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -100,7 +100,7 @@ describe(URegistry.name, (): void => {
 
   describe('register', (): void => {
     it('registers value initializer, given valid key and value initializer', (): void => {
-      registry.register('someObject', (): object => ({}));
+      registry.register('someObject', (): { [key: string]: string } => ({}));
       expect(registry.isRegistered('someObject'));
 
       registry.register('someService', (): TestService => new TestService());
@@ -117,7 +117,7 @@ describe(URegistry.name, (): void => {
       }
 
       try {
-        registry.register(({} as unknown) as string, (): string => 'foobar');
+        registry.register({} as unknown as string, (): string => 'foobar');
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -125,7 +125,7 @@ describe(URegistry.name, (): void => {
       }
 
       try {
-        registry.register((undefined as unknown) as string, (): string => 'foobar');
+        registry.register(undefined as unknown as string, (): string => 'foobar');
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -133,7 +133,7 @@ describe(URegistry.name, (): void => {
       }
 
       try {
-        registry.register((null as unknown) as string, (): string => 'foobar');
+        registry.register(null as unknown as string, (): string => 'foobar');
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -143,7 +143,7 @@ describe(URegistry.name, (): void => {
 
     it('throws error, given invalid value initializer', (): void => {
       try {
-        registry.register('someService', ('foobar' as unknown) as URegistry.Initializer);
+        registry.register('someService', 'foobar' as unknown as URegistry.Initializer);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -151,7 +151,7 @@ describe(URegistry.name, (): void => {
       }
 
       try {
-        registry.register('someService', (undefined as unknown) as URegistry.Initializer);
+        registry.register('someService', undefined as unknown as URegistry.Initializer);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -159,7 +159,7 @@ describe(URegistry.name, (): void => {
       }
 
       try {
-        registry.register('someService', (null as unknown) as URegistry.Initializer);
+        registry.register('someService', null as unknown as URegistry.Initializer);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -190,7 +190,7 @@ describe(URegistry.name, (): void => {
       registry.set('someObject1', someObject);
       expect(registry.get('someObject1')).toBe(someObject);
 
-      registry.register('someObject2', (): object => ({}));
+      registry.register('someObject2', (): { [key: string]: string } => ({}));
       expect(registry.get('someObject2')).toBe(registry.get('someObject2'));
 
       const someService1 = new TestService();
@@ -215,7 +215,7 @@ describe(URegistry.name, (): void => {
       }
 
       try {
-        registry.get(({} as unknown) as string);
+        registry.get({} as unknown as string);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -223,7 +223,7 @@ describe(URegistry.name, (): void => {
       }
 
       try {
-        registry.get((undefined as unknown) as string);
+        registry.get(undefined as unknown as string);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -231,7 +231,7 @@ describe(URegistry.name, (): void => {
       }
 
       try {
-        registry.get((null as unknown) as string);
+        registry.get(null as unknown as string);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
