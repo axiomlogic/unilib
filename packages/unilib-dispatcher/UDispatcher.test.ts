@@ -47,7 +47,7 @@ describe(
         }
 
         try {
-          dispatcher.register(({} as unknown) as string, (): void => {});
+          dispatcher.register({} as unknown as string, (): void => {});
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -55,7 +55,7 @@ describe(
         }
 
         try {
-          dispatcher.register((undefined as unknown) as string, (): void => {});
+          dispatcher.register(undefined as unknown as string, (): void => {});
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -63,7 +63,7 @@ describe(
         }
 
         try {
-          dispatcher.register((null as unknown) as string, (): void => {});
+          dispatcher.register(null as unknown as string, (): void => {});
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -73,7 +73,7 @@ describe(
 
       it('throws error, given invalid handler', (): void => {
         try {
-          dispatcher.register('foobar', ('' as unknown) as UDispatcher.Handler);
+          dispatcher.register('foobar', '' as unknown as UDispatcher.Handler);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -81,7 +81,7 @@ describe(
         }
 
         try {
-          dispatcher.register('foobar', ({} as unknown) as UDispatcher.Handler);
+          dispatcher.register('foobar', {} as unknown as UDispatcher.Handler);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -89,7 +89,7 @@ describe(
         }
 
         try {
-          dispatcher.register('foobar', (undefined as unknown) as UDispatcher.Handler);
+          dispatcher.register('foobar', undefined as unknown as UDispatcher.Handler);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -97,7 +97,7 @@ describe(
         }
 
         try {
-          dispatcher.register('foobar', (null as unknown) as UDispatcher.Handler);
+          dispatcher.register('foobar', null as unknown as UDispatcher.Handler);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -112,13 +112,10 @@ describe(
 
         expect(await dispatcher.dispatch('foobar', 1, 2, 3)).toBe('1:2:3');
 
-        dispatcher.register(
-          'foobar',
-          async (x): Promise<string> => {
-            await idle(10);
-            return `${x}:${x}:${x}`;
-          }
-        );
+        dispatcher.register('foobar', async (x): Promise<string> => {
+          await idle(10);
+          return `${x}:${x}:${x}`;
+        });
 
         expect(await dispatcher.dispatch('foobar', 1)).toBe('1:1:1');
 
@@ -150,7 +147,7 @@ describe(
         }
 
         try {
-          await dispatcher.dispatch(({} as unknown) as string);
+          await dispatcher.dispatch({} as unknown as string);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -158,7 +155,7 @@ describe(
         }
 
         try {
-          await dispatcher.dispatch((undefined as unknown) as string);
+          await dispatcher.dispatch(undefined as unknown as string);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);
@@ -166,7 +163,7 @@ describe(
         }
 
         try {
-          await dispatcher.dispatch((null as unknown) as string);
+          await dispatcher.dispatch(null as unknown as string);
           fail(new Error('Unexpected'));
         } catch (error) {
           expect(error).toBeInstanceOf(UError);

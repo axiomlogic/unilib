@@ -86,7 +86,7 @@ describe(UBus.name, (): void => {
       }
 
       try {
-        bus.subscribe(({} as unknown) as string, (): void => {});
+        bus.subscribe({} as unknown as string, (): void => {});
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -94,7 +94,7 @@ describe(UBus.name, (): void => {
       }
 
       try {
-        bus.subscribe((undefined as unknown) as string, (): void => {});
+        bus.subscribe(undefined as unknown as string, (): void => {});
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -102,7 +102,7 @@ describe(UBus.name, (): void => {
       }
 
       try {
-        bus.subscribe((null as unknown) as string, (): void => {});
+        bus.subscribe(null as unknown as string, (): void => {});
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -112,7 +112,7 @@ describe(UBus.name, (): void => {
 
     it('throws error, given invalid subscriber', (): void => {
       try {
-        bus.subscribe('foobar', ({} as unknown) as () => void);
+        bus.subscribe('foobar', {} as unknown as () => void);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -120,7 +120,7 @@ describe(UBus.name, (): void => {
       }
 
       try {
-        bus.subscribe('foobar', (undefined as unknown) as () => void);
+        bus.subscribe('foobar', undefined as unknown as () => void);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -128,7 +128,7 @@ describe(UBus.name, (): void => {
       }
 
       try {
-        bus.subscribe('foobar', (null as unknown) as () => void);
+        bus.subscribe('foobar', null as unknown as () => void);
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -178,7 +178,7 @@ describe(UBus.name, (): void => {
       }
 
       try {
-        bus.publish(({} as unknown) as string, (): void => {});
+        bus.publish({} as unknown as string, (): void => {});
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -186,7 +186,7 @@ describe(UBus.name, (): void => {
       }
 
       try {
-        bus.publish((undefined as unknown) as string, (): void => {});
+        bus.publish(undefined as unknown as string, (): void => {});
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
@@ -194,7 +194,7 @@ describe(UBus.name, (): void => {
       }
 
       try {
-        bus.publish((null as unknown) as string, (): void => {});
+        bus.publish(null as unknown as string, (): void => {});
         fail(new Error('Unexpected'));
       } catch (error) {
         expect(error).toBeInstanceOf(UError);
